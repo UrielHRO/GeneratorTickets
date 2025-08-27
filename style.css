@@ -1,0 +1,333 @@
+/* --- GERAL E VARIÁVEIS --- */
+:root {
+    --bg-gradient: linear-gradient(135deg, #1e1143, #3b164d);
+    --primary-color: #ff8c6b;
+    --primary-hover-color: #ffac94;
+    --text-color: #e0e0e0;
+    --text-secondary-color: #a0a0b0;
+    --input-bg-color: rgba(255, 255, 255, 0.05);
+    --input-border-color: rgba(255, 255, 255, 0.2);
+    --input-focus-border: #8c52ff;
+    --error-color: #ff5555;
+    --card-bg-color: #2c1a4d;
+    --ticket-color: #5d3a9e;
+    --font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-image: var(--bg-gradient);
+    background-size: cover;
+    background-attachment: fixed;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><defs><radialGradient id="grad1" cx="80%" cy="20%" r="60%" fx="80%" fy="20%"><stop offset="0%" style="stop-color:rgba(140, 82, 255, 0.1);stop-opacity:1" /><stop offset="100%" style="stop-color:rgba(140, 82, 255, 0);stop-opacity:1" /></radialGradient><radialGradient id="grad2" cx="20%" cy="80%" r="70%" fx="20%" fy="80%"><stop offset="0%" style="stop-color:rgba(255, 140, 107, 0.15);stop-opacity:1" /><stop offset="100%" style="stop-color:rgba(255, 140, 107, 0);stop-opacity:1" /></radialGradient></defs><rect x="0" y="0" width="100%" height="100%" fill="url(%23grad1)" /><rect x="0" y="0" width="100%" height="100%" fill="url(%23grad2)" /></svg>'), var(--bg-gradient);
+}
+
+
+/* --- LAYOUT PRINCIPAL --- */
+.main-container {
+    width: 100%;
+    max-width: 650px;
+}
+
+.card {
+    background-color: transparent;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.card-header {
+    margin-bottom: 2.5rem;
+}
+
+.card-header .logo {
+    width: 250px; 
+    height: auto; 
+    margin-bottom: 1.5rem;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.card-header p {
+    color: var(--text-secondary-color);
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+/* --- FORMULÁRIO --- */
+#ticket-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    text-align: left;
+    position: relative;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--input-border-color);
+    border-radius: 8px;
+    color: var(--text-color);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder {
+    color: var(--text-secondary-color);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 3px rgba(140, 82, 255, 0.3);
+}
+
+input[type="text"].error,
+input[type="email"].error {
+    border-color: var(--error-color);
+}
+
+.help-text {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-secondary-color);
+    margin-top: 0.5rem;
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    display: none; /* Oculto por padrão */
+}
+
+/* --- UPLOAD DE AVATAR --- */
+.avatar-uploader {
+    border: 2px dashed var(--input-border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.avatar-uploader.dragging {
+    border-color: var(--input-focus-border);
+    background-color: rgba(140, 82, 255, 0.1);
+}
+
+.avatar-uploader.error {
+     border-color: var(--error-color);
+}
+
+.upload-prompt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-secondary-color);
+}
+
+.upload-prompt .upload-icon {
+    color: var(--primary-color);
+}
+
+.upload-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+#avatar-preview-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.preview-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* --- BOTÕES --- */
+.primary-btn, .secondary-btn {
+    padding: 1rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: #1e1143;
+}
+
+.primary-btn:hover {
+    background-color: var(--primary-hover-color);
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--input-border-color);
+}
+
+.secondary-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --- TICKET GERADO --- */
+#ticket-section h1 span,
+#ticket-section p strong {
+    color: var(--primary-color);
+}
+
+.ticket {
+    background-color: var(--ticket-color);
+    border-radius: 16px;
+    margin-top: 2rem;
+    text-align: left;
+    padding: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.ticket-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 800;
+}
+
+.logo-small {
+     width: 60px;   
+    height: auto;
+}
+
+.ticket-info {
+    font-size: 0.875rem;
+    color: var(--text-secondary-color);
+}
+
+.ticket-body {
+    display: flex;
+    align-items: center;
+}
+
+.attendee-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.attendee-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.attendee-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.attendee-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.attendee-github {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary-color);
+}
+
+.ticket-divider {
+    border-left: 2px dashed rgba(255, 255, 255, 0.2);
+    margin: 0 1.5rem;
+    height: 80px;
+}
+
+.ticket-number {
+    font-weight: 700;
+    color: var(--text-secondary-color);
+    transform: rotate(90deg);
+    white-space: nowrap;
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 480px) {
+    .ticket-body {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .ticket-divider {
+        border-left: none;
+        border-top: 2px dashed rgba(255, 255, 255, 0.2);
+        height: auto;
+        width: 100%;
+        margin: 1.5rem 0;
+    }
+    .ticket-number {
+        transform: none;
+        text-align: center;
+    }
+}
+
+@media (min-width: 768px) {
+    body {
+        align-items: center;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .card {
+         padding: 3rem;
+    }
+}
