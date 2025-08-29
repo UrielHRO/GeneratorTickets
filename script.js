@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ticketNumber = document.getElementById('ticket-number');
 
     let uploadedFile = null;
-    const MAX_FILE_SIZE = 700 * 1024; // 500KB
+    const MAX_FILE_SIZE = 500 * 1024; // 500KB
 
     // --- FUNÇÕES AUXILIARES DE VALIDAÇÃO ---
     const showError = (element, message) => {
